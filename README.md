@@ -15,12 +15,13 @@
 Затем выполните сборку образа PHP-FPM:
 `docker build -t taxi-company-fpm-8.3 .`
 
+Создатч network `docker network create -d bridge tp`
 
 ### Шаг 2: Создание контейнера PHP-FPM
 
 Выполните следующую команду для создания и запуска контейнера PHP-FPM: 
 
-`docker run -d --name taxi-company-fpm -p 9097:9000 -v ${pathToProject}/project:/var/www/html -v ${pathToProject}/taxiCompany/docker-config/fpm/php-values.ini:/usr/local/etc/php/conf.d/php-values.ini --network tp taxi-company-fpm-8.3`
+`docker run -d --name taxi-company-fpm -p 9097:9000 -v ${pathToProject}/project:/var/www/html -v ${pathToProject}/docker-config/fpm/php-values.ini:/usr/local/etc/php/conf.d/php-values.ini --network tp taxi-company-fpm-8.3`
 
 _Замените ${pathToProject} на фактический путь к вашему проекту._
 
@@ -28,7 +29,7 @@ _Замените ${pathToProject} на фактический путь к ва�
 
 Выполните следующую команду для создания и запуска контейнера Nginx:
 
-`docker run -d --name taxi-company-nginx -p 8089:8089 -v ${pathToProject}/project:/var/www/html -v ${pathToProject}/taxiCompany/docker-config/nginx/:/etc/nginx/conf.d --network tp nginx`
+`docker run -d --name taxi-company-nginx -p 8089:8089 -v ${pathToProject}/project:/var/www/html -v ${pathToProject}/docker-config/nginx/:/etc/nginx/conf.d --network tp nginx`
 
 _Замените ${pathToProject} на фактический путь к вашему проекту._
 
