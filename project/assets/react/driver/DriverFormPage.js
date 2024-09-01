@@ -14,7 +14,7 @@ function DriverFormPage() {
     useEffect(() => {
         fetch('/api/cars')
             .then(response => response.json())
-            .then(data => setCars(data));
+            .then(data => setCars(data.cars));
 
         if (id) {
             fetch(`/api/drivers/${id}`)

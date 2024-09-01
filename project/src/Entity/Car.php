@@ -8,11 +8,16 @@ use App\Repository\CarRepository;
 use DateTime;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\DBAL\Types\Types;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: CarRepository::class)]
 #[ORM\HasLifecycleCallbacks]
+#[UniqueEntity(
+    fields: ['number'],
+    message: 'Автомобиль с таким номером уже существует.'
+)]
 class Car
 {
     #[ORM\Id]
@@ -21,7 +26,7 @@ class Car
     #[ORM\Column(type: Types::INTEGER)]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::STRING, length: 255)]
+    #[ORM\Column(type: Types::STRING, length: 255, unique: true)]
     #[Assert\NotBlank(message: 'Номер машины не может быть пустым')]
     private ?string $number = null;
 
