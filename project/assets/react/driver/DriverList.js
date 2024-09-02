@@ -73,21 +73,19 @@ function DriverList() {
     };
 
     const handleDeleteDriver = (id) => {
-        const handleDeleteDriver = (id) => {
-            if (window.confirm('Вы уверены, что хотите удалить этого водителя?')) {
-                fetch(`/api/drivers/${id}`, { method: 'DELETE' })
-                    .then(response => {
-                        if (response.ok) {
-                            window.location.reload();
-                        } else {
-                            alert('Ошибка при удалении водителя.');
-                        }
-                    })
-                    .catch(() => {
+        if (window.confirm('Вы уверены, что хотите удалить этого водителя?')) {
+            fetch(`/api/drivers/${id}`, { method: 'DELETE' })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.reload();
+                    } else {
                         alert('Ошибка при удалении водителя.');
-                    });
-            }
-        };
+                    }
+                })
+                .catch(() => {
+                    alert('Ошибка при удалении водителя.');
+                });
+        }
     };
 
     const totalPages = Math.ceil(totalDrivers / limit);

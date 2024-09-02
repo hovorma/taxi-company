@@ -21,7 +21,7 @@ class DriverCarHistory
     private ?int $id = null;
 
     #[ORM\ManyToOne(targetEntity: Driver::class)]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private ?Driver $driver = null;
 
     #[ORM\ManyToOne(targetEntity: Car::class)]

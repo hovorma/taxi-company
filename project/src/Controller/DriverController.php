@@ -87,7 +87,7 @@ class DriverController extends AppController
     }
 
     #[Route('/{id}', name: 'delete', methods: ['DELETE'])]
-    public function delete($id): JsonResponse
+    public function delete(int $id): JsonResponse
     {
         try {
             $this->driverService->delete($id);
